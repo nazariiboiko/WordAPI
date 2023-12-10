@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: ${PROD_DB_URL}
+    username: ${PROD_DB_USERNAME}
+    password: ${PROD_DB_PASSWORD}
+  liquibase:
+    change-log: classpath:liquibase/db.changelog-master.xml
+    url: ${PROD_DB_URL}
+    user: ${PROD_DB_USER}
+    password: ${PROD_DB_PASSWORD}
+  data:
+    web:
+      pageable:
+        default-page-size: 20
+        one-indexed-parameters: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  security:
+    cors:
+      client: ${CLIENT_URL}
+
+jwt:
+  password:
+    encoder:
+      secret: ${ENCODER_SECRET}
+      iteration:  ${ENCODER_ITERATION}
+      keyLength: ${ENCODER_KEY_LENGTH}
+  token:
+    secret: ${TOKEN_SECRET}
+    expired: 3600000
+
+debug: false
+
+nazariiboiko:
+  openapi:
+    dev-url: ${DEV_URL}
